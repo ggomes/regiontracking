@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RegionTracking>
+
+		<Nbar> 200 </Nbar>
+		<dt>1</dt>
+		<Tfinal>1200</Tfinal>
+		<outputdx>0.01</outputdx> 	
+		<epsilon>0.0000001</epsilon>
+		
+		<LinkList>
+
+			<link length="2" id="1">
+				<fd type="triangular" capacity="2400" rhocrit="40" rhojam="160"/>
+				<initialcondition>
+					<x> 0  </x>
+					<y>	0 </y>
+				</initialcondition>
+		    </link>
+			
+			<link length="2" id="2">
+				<fd type="triangular" capacity="600" rhocrit="10" rhojam="40"/>
+				<initialcondition>
+					<x> 0  </x>
+					<y>	0  </y>
+				</initialcondition>
+		    </link>
+			
+		</LinkList>
+
+		<BoundaryConditions>
+			<upstream>
+				<x>   0, 600  </x>
+				<y>	1000,   0  </y>
+			</upstream>
+
+			<downstream>
+				<x> 0 </x>
+				<y> 100000 </y>
+			</downstream>
+		</BoundaryConditions>
+			
+	
+		<MacroscopicModels>
+			<model modelname="CTM" prefix="ctma" dx="0.02" />
+			<model modelname="CTM" prefix="ctmb" dx="0.05" />
+			<model modelname="CTM" prefix="ctmc" dx="0.1" />
+			<model modelname="CTM" prefix="ctmd" dx="0.5" />
+		</MacroscopicModels>
+
+</RegionTracking>

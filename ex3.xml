@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RegionTracking>
+
+		<Nbar> 200 </Nbar>
+		<dt>1</dt>
+		<Tfinal>1000</Tfinal>
+		<outputdx>0.01</outputdx> 	
+		<epsilon>0.0000001</epsilon>
+		
+		<LinkList>
+
+			<link length="2" id="1">
+				<fd type="triangular" capacity="2400" rhocrit="40" rhojam="160"/>
+				<initialcondition>
+					<x> 0 , 0.5,  1.5 </x>
+					<y>	0,  20, 10 </y>
+				</initialcondition>
+		    </link>
+			
+			<link length="1" id="2">
+				<fd type="triangular" capacity="1200" rhocrit="20" rhojam="80"/>
+				<initialcondition>
+					<x> 0 , 0.5 </x>
+					<y>	0,  20 </y>
+				</initialcondition>
+		    </link>
+			
+			<link length="1" id="3">
+				<fd type="triangular" capacity="600" rhocrit="10" rhojam="40"/>
+				<initialcondition>
+					<x> 0 , 0.5 </x>
+					<y>	0,  20 </y>
+				</initialcondition>
+		    </link>
+			
+		</LinkList>
+
+		<BoundaryConditions>
+			<upstream>
+				<x>    0 , 300,  600 , 900 </x>
+				<y>	600, 1200,  0,    0  </y>
+			</upstream>
+
+			<downstream>
+				<x> 0 </x>
+				<y> 100000 </y>
+			</downstream>
+		</BoundaryConditions>
+
+		<TrafficSignals>
+			<signal algorithm="pretimed" link="1">
+				<greentime> 20 </greentime>
+				<cycle> 100 </cycle>
+			</signal> 
+			
+		</TrafficSignals>
+	
+		<MacroscopicModels>
+			<model modelname="CTM" prefix="ctm" dx="0.02" />
+		</MacroscopicModels>
+
+</RegionTracking>

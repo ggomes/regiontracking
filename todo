@@ -1,0 +1,50 @@
++ passing fans between links
++ AbstractController type with getFlowConstraint.
+
+regiontracking.contruct
+regiontracking.initialize
+	+ add GeneratorLinkConector
+	+ initialize macro models
+	+ test cfl condition
+regiontracking.run
+
+	+ loop t=0...Tfinal
+		+ execute generators
+			+ triggercondition
+			+ generateregions
+		+ update region speeds
+		+ update region lengths
+		+ remove extra regions
+		+ update macro controllers
+		+ update macro models
+		+ write output
+
+AbstractEdgeGenerator
+	triggercondition = upregionremoved | dnregionremoved
+	generateregions = empty
+	
+	-> GeneratorBoundaryCondition
+		triggercondition = upregionremoved | dnregionremoved | t=tau_i
+		generateregions
+			+ sample boundary density
+			+ check if new region enters the domain.
+			+ if so create new constant region
+		
+	GeneratorLinkConnector
+		triggercondition = upregionremoved | dnregionremoved
+		generateregions
+			+ sample up and dn densities
+			+ get active flow constraint from boundary controller
+			+ solve the constrained Riemann problem
+			+ insert regions
+
+	GeneratorSignalFixedTime
+		triggercondition = startgreen | startred
+		generateregions
+			+ choose flow constraint
+			+ solve the constrained Riemann problem
+			+ insert regions
+
+
+
+
